@@ -88,7 +88,7 @@ function startGame() {
     hasBlackJack = false
     // cards = [firstCard, secondCard]
     cards = [drawCard(), drawCard()]
-    sum = adjustForAce([cards])
+    sum = adjustForAce([...cards])
     renderGame()
     
 }
@@ -127,11 +127,23 @@ function renderGame() {
 function newCard(){
     console.log("Drawing a new card from the deck")
 
-    let newCard = getRandomCard()
-
-    sum += newCard
+    // let newCard = getRandomCard()
+    let newCard = drawCard()
+    // sum += newCard   
     cards.push(newCard)
+    sum = adjustForAce([...cards])
     renderGame()
 }
+
+function resetGame() {
+    cards = []
+    sum = 0
+    hasBlackJack = false
+    isAlive = false
+    messageEl.textContent = "Want to play a round?"
+    cardsEl.innerHTML = "Cards:"
+    sumEl.textContent = "Sum:"
+}
+
 
 console.log(hasBlackJack)
